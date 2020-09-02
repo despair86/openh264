@@ -48,7 +48,7 @@
 #include <sys/types.h>
 #include <sys/param.h>
 #include <unistd.h>
-#ifndef __Fuchsia__
+#if !defined(__Fuchsia__) && !defined(__sun)
 #include <sys/sysctl.h>
 #endif
 #ifdef __APPLE__

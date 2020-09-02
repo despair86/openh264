@@ -48,7 +48,7 @@
 #include <sys/types.h>
 #include <sys/param.h>
 #include <unistd.h>
-#ifndef __Fuchsia__
+#if !defined(__Fuchsia__) && !defined(__sun)
 #include <sys/sysctl.h>
 #endif
 #ifdef __APPLE__
@@ -511,7 +511,7 @@ WELS_THREAD_ERROR_CODE    WelsQueryLogicalProcessInfo (WelsLogicalProcessInfo* p
   pInfo->ProcessorCount = 1;
   return WELS_THREAD_ERROR_OK;
 
-#elif defined(__Fuchsia__)
+#elif defined(__Fuchsia__) || defined(__sun)
 
   pInfo->ProcessorCount = sysconf(_SC_NPROCESSORS_ONLN);
   return WELS_THREAD_ERROR_OK;
